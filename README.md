@@ -9,3 +9,5 @@ More about EF :
 https://docs.microsoft.com/en-US/aspnet/mvc/overview/getting-started/getting-started-with-ef-using-mvc/creating-an-entity-framework-data-model-for-an-asp-net-mvc-application,
 https://msdn.microsoft.com/en-us/library/jj591617(v=vs.113).aspx
 
+
+For NPM: Install from https://nodejs.org/en/

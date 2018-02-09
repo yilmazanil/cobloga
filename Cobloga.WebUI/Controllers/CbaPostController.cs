@@ -1,45 +1,17 @@
-﻿using Cobloga.Data;
-using Cobloga.Data.DataModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Http;
+using System.Web;
+using System.Web.Mvc;
 
 namespace Cobloga.WebUI.Controllers
 {
-    public class CbaPostController : ApiController
+    public class CbapostController : Controller
     {
-        // GET: api/CbaPost
-        public IEnumerable<CbaPost> Get()
+        // GET: CbaPost
+        public ActionResult Index()
         {
-            using (var context = new CoblogaDataContext())
-            {
-                return context.CbaPost.ToList();
-            }
+            return View();
         }
-
-        // GET: api/CbaPost/5
-        public CbaPost Get(Guid id)
-        {
-            using (var context = new CoblogaDataContext())
-            {
-                return context.CbaPost.FirstOrDefault(p => p.ID == id);
-            }
-        }
-
-        //// POST: api/CbaPost
-        //public void Post([FromBody]string value)
-        //{
-        //}
-
-        //// PUT: api/CbaPost/5
-        //public void Put(int id, [FromBody]string value)
-        //{
-        //}
-
-        //// DELETE: api/CbaPost/5
-        //public void Delete(int id)
-        //{
-        //}
     }
 }
