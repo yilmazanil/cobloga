@@ -1,0 +1,16 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container" ng-controller="HomeController">
+   <div class="list-group" ng-repeat="rp in RecentPosts | orderBy:'-CreatedDate' | limitTo:5" ng-if="rp.Content">
+        <a href="post/index?postId={{rp.ID}}" class="list-group-item" ng-bind-html="rp.Content | trust"></a>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/Scripts/controllers/HomeController.js"></script>
+}
+

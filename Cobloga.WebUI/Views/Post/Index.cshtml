@@ -1,0 +1,18 @@
+﻿@model Cobloga.Data.DataModel.CbaPost
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <div class="row text-right">
+        <a href="/post/update?postId=@Model.ID">Edit</a>
+    </div>
+    <div class="well">
+        
+        <div>
+            @Html.Raw(Model.Content)
+        </div>
+    </div>
+</div>
+

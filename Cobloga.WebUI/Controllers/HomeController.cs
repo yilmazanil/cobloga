@@ -6,9 +6,9 @@ using System.Web.Mvc;
 
 namespace Cobloga.WebUI.Controllers
 {
-    public class CbapostController : Controller
+    public class HomeController : Controller
     {
-        // GET: CbaPost
+        // GET: Home
         public ActionResult Index()
         {
             return View();

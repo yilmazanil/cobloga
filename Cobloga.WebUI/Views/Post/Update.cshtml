@@ -1,0 +1,20 @@
+﻿@model Cobloga.Data.DataModel.CbaPost
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="well" ng-controller="UpdatePostController" ng-init="tinymceModel = '@Model.Content'">
+        <div>
+            <textarea ui-tinymce="tinymceOptions" ng-model="tinymceModel" ></textarea>
+            <button type="button" ng-click="Update()" class="btn btn-default btn-lg btn-block">Update</button>
+        </div>
+        @Html.HiddenFor(m => m.ID, new { ngModel = "postId" })
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/Scripts/controllers/UpdatePostController.js"></script>
+}
+

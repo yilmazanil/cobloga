@@ -7,9 +7,9 @@ using System.Web.Http;
 
 namespace Cobloga.WebUI.Controllers
 {
-    public class CbapostapiController : ApiController
+    public class PostsController : ApiController
     {
-        // GET: api/Cbapostapi
+        // GET: api/posts
         public IEnumerable<CbaPost> Get()
         {
             using (var context = new CoblogaDataContext())
@@ -18,7 +18,7 @@ namespace Cobloga.WebUI.Controllers
             }
         }
 
-        // GET: api/Cbapostapi/5
+        // GET: api/posts/5
         public CbaPost Get(Guid id)
         {
             using (var context = new CoblogaDataContext())
@@ -27,7 +27,7 @@ namespace Cobloga.WebUI.Controllers
             }
         }
 
-        //// POST: api/Cbapostapi
+        //// POST: api/posts
         [HttpPost]
         public IHttpActionResult Post([FromBody]string content)
         {
@@ -40,12 +40,24 @@ namespace Cobloga.WebUI.Controllers
             return Json(post.ID);
         }
 
-        //// PUT: api/Cbapostapi/5
+        [HttpPost]
+        public void Update([FromBody]Guid postId, [FromBody]string content)
+        {
+            
+            using (var context = new CoblogaDataContext())
+            {
+                var entry = context.CbaPost.FirstOrDefault(p => p.ID == postId);
+                entry.Content = content;
+                context.SaveChanges();
+            }
+        }
+
+        //// PUT: api/posts/5
         //public void Put(int id, [FromBody]string value)
         //{
         //}
 
-        //// DELETE: api/Cbapostapi/5
+        //// DELETE: api/posts/5
         //public void Delete(int id)
         //{
         //}

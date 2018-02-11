@@ -2,25 +2,10 @@
 (function () {
     var app = angular.module("cobloga");
 
-    var NewPostController = function ($scope, $http) {
-        $scope.tinymceModel = 'Initial content';
-
-        $scope.getContent = function () {
-            console.log('Editor content:', $scope.tinymceModel);
-        };
-
-        $scope.setContent = function () {
-            $scope.tinymceModel = 'Time: ' + (new Date());
-        };
-
+    var CreatePostController = function ($scope, $http, $location) {
         $scope.Save = function () {
             var postData = JSON.stringify($scope.tinymceModel);
-            var config = {
-                //headers : {
-                //    'Content-Type': 'application/json;charset=utf-8;'
-                //}
-            }
-            $http.post("api/cbapostapi/", postData, config).then(function (response) {
+            $http.post("api/post", postData, null).then(function (response) {
                 return response.data;
             });
         };
@@ -40,15 +25,35 @@
                  { text: 'C++', value: 'cpp' }
             ],
             menubar: false,
-            codesample_content_css: '../Content/prism.css',
-            skin_url: '../node_modules/tinymce/skins/lightgray',
+            codesample_content_css: '../../Content/prism.css',
+            skin_url: '../../node_modules/tinymce/skins/lightgray',
             branding: false,
             statusbar: false,
             height :800
         };
+
+       
+
+        //var setDisplayMode = function () {
+        //    var qsParams = $location.search();
+        //    if (qsParams && qsParams.postId) {
+        //        $http.get("api/cbapostapi/" + qsParams.postId).then(function (response) {
+        //            $scope.postId = qsParams.postId;
+        //            $scope.isEditable = true;
+        //            $scope.tinymceModel = response.data.Content;
+        //        });
+        //    }
+        //    else {
+        //        $scope.tinymceModel = '';
+        //        $scope.postId ='';
+        //        $scope.isEditable = false;
+        //    }
+
+        //};
+        //setDisplayMode();
     };
 
 
 
-    app.controller("NewPostController", ["$scope", "$http", NewPostController]);
+    app.controller("CreatePostController", ["$scope", "$http", "$location", CreatePostController]);
 }());

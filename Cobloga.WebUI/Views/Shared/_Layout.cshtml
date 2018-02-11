@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Cobloga</title>
+    <link href="~/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/site/site.css" rel="stylesheet" />
+    <base href="/">
+</head>
+<body ng-app="cobloga">
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Cobloga</a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/post/create">New</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div>
+        @RenderBody()
+    </div>
+    <script src="~/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="~/node_modules/tinymce/tinymce.min.js"></script>
+    <script src="~/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/node_modules/angular/angular.min.js"></script>
+    <script src="~/node_modules/angular-ui-tinymce/src/tinymce.js"></script>
+    <script src="~/Scripts/app.js"></script>
+    <script src="~/Scripts/filters/trusthtml.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+
+</html>
