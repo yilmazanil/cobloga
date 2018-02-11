@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "devDependencies": {
     "angular": "^1.6.9",
-    "angular-ui-tinymce": "0.0.5",
     "bootstrap": "^3.3.7",
     "jquery": "^1.9.1",
     "tinymce": "^4.7.6"

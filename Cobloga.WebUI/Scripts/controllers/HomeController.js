@@ -2,16 +2,14 @@
 (function () {
     var app = angular.module("cobloga");
 
-    var HomeController = function ($scope, $http) {
+    var HomeController = function ($scope, $http, cbopostservice) {
 
         var onFetchComplete = function (response) {
-            $scope.RecentPosts = response.data;
+            $scope.RecentPosts = response;
         };
 
-        $http.get("api/posts/").then(onFetchComplete);
+        cbopostservice.getRecentPosts().then(onFetchComplete);
     };
 
-
-
-    app.controller("HomeController", ["$scope", "$http", HomeController]);
+    app.controller("HomeController", ["$scope", "$http", "cbopostservice", HomeController]);
 }());

@@ -14,7 +14,7 @@ namespace Cobloga.WebUI.Controllers
         {
             using (var context = new CoblogaDataContext())
             {
-                return context.CbaPost.ToList();
+                return context.CbaPost.Where(p=>p.Content != null && p.Content != "").ToList();
             }
         }
 
@@ -28,7 +28,7 @@ namespace Cobloga.WebUI.Controllers
         }
 
         //// POST: api/posts
-        [HttpPost]
+        [HttpPut]
         public IHttpActionResult Post([FromBody]string content)
         {
             var post = new CbaPost { CreatedDate = DateTime.Now, Content = content };
@@ -40,16 +40,18 @@ namespace Cobloga.WebUI.Controllers
             return Json(post.ID);
         }
 
+        
         [HttpPost]
-        public void Update([FromBody]Guid postId, [FromBody]string content)
+        public IHttpActionResult Update([FromBody]CbaPost post)
         {
-            
+
             using (var context = new CoblogaDataContext())
             {
-                var entry = context.CbaPost.FirstOrDefault(p => p.ID == postId);
-                entry.Content = content;
+                var entry = context.CbaPost.FirstOrDefault(p => p.ID == post.ID);
+                entry.Content = post.Content;
                 context.SaveChanges();
             }
+            return Json(post.ID);
         }
 
         //// PUT: api/posts/5

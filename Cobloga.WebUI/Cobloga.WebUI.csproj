@@ -122,7 +122,8 @@
     <Content Include="Global.asax" />
     <Content Include="node_modules\angular-ui-tinymce\demo\demo.html" />
     <Content Include="node_modules\angular-ui-tinymce\gruntFile.js" />
-    <Content Include="node_modules\angular-ui-tinymce\src\tinymce.js" />
+    <Content Include="Scripts\services\cbopostservice.js" />
+    <Content Include="Scripts\ui-tinymce\tinymce.js" />
     <Content Include="node_modules\angular-ui-tinymce\test\karma.conf.js" />
     <Content Include="node_modules\angular-ui-tinymce\test\tinymce.spec.js" />
     <Content Include="node_modules\angular\angular-csp.css" />
@@ -590,6 +591,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="node_modules\angular-ui-tinymce\src\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Cobloga.Data\Cobloga.Data.csproj">
