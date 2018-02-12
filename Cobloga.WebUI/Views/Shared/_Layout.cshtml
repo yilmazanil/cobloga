@@ -6,6 +6,7 @@
     <title>Cobloga</title>
     <link href="~/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/site/site.css" rel="stylesheet" />
+    <script src="~/node_modules/angular/angular.min.js"></script>
     <base href="/">
 </head>
 <body ng-app="cobloga">
@@ -14,8 +15,24 @@
             <div class="navbar-header">
                 <a class="navbar-brand" href="/">Cobloga</a>
             </div>
+             <ul class="nav navbar-nav navbar-left">
+                 <li><a href="/post/create">New</a></li>
+             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/post/create">New</a></li>
+               
+               
+                
+                @if (@User.Identity.IsAuthenticated)
+                {
+                    <li><a href="#"><strong>@User.Identity.Name</strong></a></li>
+                    <li><a href="@Url.Action("Logout", "Auth")"> Logout</a></li>
+
+                }
+                else
+                {
+                    <li><a href="@Url.Action("Registration", "Auth")"> Register</a></li>
+                    <li><a href="@Url.Action("Login", "Auth")"> Login</a></li>
+                }
             </ul>
         </div>
     </nav>
@@ -25,7 +42,6 @@
     <script src="~/node_modules/jquery/dist/jquery.min.js"></script>
     <script src="~/node_modules/tinymce/tinymce.min.js"></script>
     <script src="~/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="~/node_modules/angular/angular.min.js"></script>
     <script src="~/Scripts/ui-tinymce/tinymce.js"></script>
     <script src="~/Scripts/app.js"></script>
     <script src="~/Scripts/services/cbopostservice.js"></script>

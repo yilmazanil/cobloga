@@ -13,5 +13,9 @@ namespace Cobloga.Data.DataModel
         public string Content { get; set; }
 
         public DateTime CreatedDate { get; set; }
+
+        public int? UserId { get; set; }
+
+        public virtual User User { get; set; }
     }
 }

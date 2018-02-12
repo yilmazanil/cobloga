@@ -1,5 +1,6 @@
 ﻿using Cobloga.Data;
 using Cobloga.Data.DataModel;
+using Cobloga.WebUI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -12,7 +12,7 @@ angular.module('ui.tinymce', [])
       link: function (scope, elm, attrs, ngModel) {
         var expression, options, tinyInstance,
           updateView = function () {
-            ngModel.$setViewValue(elm.val());
+              ngModel.$setViewValue(elm.val());
             if (!scope.$root.$$phase) {
               scope.$apply();
             }
@@ -101,7 +101,9 @@ angular.module('ui.tinymce', [])
         setTimeout(function () {
 
           
-          tinymce.init(options);
+            tinymce.init(options);
+            scope.textEditorAvailable = true;
+
         });
 
         ngModel.$render = function() {
@@ -109,7 +111,7 @@ angular.module('ui.tinymce', [])
             tinyInstance = tinymce.get(attrs.id);
           }
           if (tinyInstance) {
-            tinyInstance.setContent(ngModel.$viewValue || '');
+              tinyInstance.setContent(ngModel.$viewValue || '');
           }
         };
 

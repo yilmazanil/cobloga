@@ -1,13 +1,15 @@
-﻿@model Cobloga.Data.DataModel.CbaPost
+﻿
+@model Cobloga.Data.DataModel.CbaPost
+
 @{
     ViewBag.Title = "Update";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="container">
-    <div class="well" ng-controller="UpdatePostController" ng-init="postId = '@Model.ID';tinymceModel = '@Model.Content'">
+    <div class="well" ng-show="textEditorAvailable" ng-controller="UpdatePostController" ng-init="postId = '@Model.ID';tinymceModel=@Json.Encode(Model.Content);">
         <div>
-            <textarea ui-tinymce ng-model="tinymceModel" ></textarea>
+            <textarea ui-tinymce ng-model="tinymceModel"></textarea>
             <button type="button" ng-click="Update()" class="btn btn-default btn-lg btn-block">Update</button>
         </div>
     </div>

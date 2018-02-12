@@ -1,0 +1,25 @@
+﻿@model Cobloga.WebUI.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Registration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    @using (Html.BeginForm())
+    {
+        <div class="form-group">
+            @Html.LabelFor(u => u.Email)<br />
+            @Html.TextBoxFor(u => u.Email, new { @class = "form-control" })<br />
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(u => u.Password)<br />
+            @Html.PasswordFor(u => u.Password, new { @class = "form-control" })<br />
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(u => u.Name)<br />
+            @Html.TextBoxFor(u => u.Name, new { @class = "form-control" })<br />
+        </div>
+            <p>
+                <button type="submit" class="btn btn-default">Register</button>
+            </p>
+    }
+</div>
