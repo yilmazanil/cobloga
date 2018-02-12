@@ -6,7 +6,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 
-namespace Cobloga.WebUI.CustomLibraries
+namespace Cobloga.Business.Authentication
 {
     public class CustomEncrypt
     {

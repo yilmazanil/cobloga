@@ -1,12 +1,9 @@
 ﻿using Cobloga.WebUI.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Security.Claims;
-using Cobloga.Data;
-using Cobloga.WebUI.CustomLibraries;
+using Cobloga.Business.Authentication;
+using Cobloga.Data.DataModel;
 
 namespace Cobloga.WebUI.Controllers
 {
@@ -28,36 +25,21 @@ namespace Cobloga.WebUI.Controllers
                 return View(model);
             }
 
-            using (var context = new CoblogaDataContext())
+            if (AuthenticationHelper.Authenticate(model.Email, model.Password))
             {
-                var user = context.User.FirstOrDefault(u => u.Email == model.Email);
-                var password = user.Password;
-                var decryptedPassword = CustomDecrypt.Decrypt(password);
-
-                if (model.Email != null & model.Password == decryptedPassword)
-                {
-                    var identity = new ClaimsIdentity(new[] {
-                        new Claim(ClaimTypes.Name, user.Name),
-                        new Claim(ClaimTypes.Email, user.Email)
-                }, "CoblogaCookie");
-
-                    var authManager = Request.GetOwinContext().Authentication;
-                    authManager.SignIn(identity);
-
-                    return Redirect(GetRedirectUrl(model.ReturnUrl));
-                }
+                var identity = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Email, model.Email) }, "CoblogaCookie");
+                Request.GetOwinContext().Authentication.SignIn(identity);
+                return Redirect(GetRedirectUrl(model.ReturnUrl));
             }
+       
             ModelState.AddModelError("", "Invalid email or password");
             return View(model);
-
         }
 
         public ActionResult Logout()
         {
-            var authManager = Request.GetOwinContext().Authentication;
-            authManager.SignOut("CoblogaCookie");
-            return RedirectToAction("Index", "Home");
-
+           Request.GetOwinContext().Authentication.SignOut("CoblogaCookie"); ;
+           return RedirectToAction("Index", "Home");
         }
         public ActionResult Registration()
         {
@@ -68,17 +50,16 @@ namespace Cobloga.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                using (var db = new CoblogaDataContext())
+                var user = new User
                 {
-                    var encryptedPassword = CustomEncrypt.Encrypt(model.Password);
-                    var user = db.User.Create();
-                    user.Email = model.Email;
-                    user.Password = encryptedPassword;
-                    user.Name = model.Name;
-                    db.User.Add(user);
-                    db.SaveChanges();
+                    Email = model.Email,
+                    Name = model.Name,
+                    Password = model.Password,
+                };
+                if (AuthenticationHelper.Register(user))
+                {
+                    RedirectToAction("Index", "Home");
                 }
-                RedirectToAction("Index", "Home");
             }
             else
             {

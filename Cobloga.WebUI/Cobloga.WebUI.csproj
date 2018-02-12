@@ -467,8 +467,6 @@
     <Compile Include="Controllers\PostsApiController.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="CustomLibraries\CustomDecrypt.cs" />
-    <Compile Include="CustomLibraries\CustomEncrypt.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -611,6 +609,10 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Cobloga.Business\Cobloga.Business.csproj">
+      <Project>{EB026FF6-46AA-4BFD-8487-96DF962E18B0}</Project>
+      <Name>Cobloga.Business</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Cobloga.Data\Cobloga.Data.csproj">
       <Project>{f31ff51a-a8c4-4ed5-b11c-0ceb837a5a7a}</Project>
       <Name>Cobloga.Data</Name>

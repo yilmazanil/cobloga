@@ -1,4 +1,5 @@
-﻿using Cobloga.Data;
+﻿using Cobloga.Business.Authentication;
+using Cobloga.Data;
 using Cobloga.Data.DataModel;
 using Cobloga.WebUI.Models;
 using System;
@@ -12,12 +13,12 @@ namespace Cobloga.WebUI.Controllers
 {
     public class PostController : Controller
     {
-        // GET: CbaPost
         public ActionResult Index(Guid postId)
         {
+            var userId = AuthenticationHelper.GetUserIdIfExists();
             using (var context = new CoblogaDataContext())
             {
-                var model = context.CbaPost.FirstOrDefault(p => p.ID == postId);
+                var model = context.CbaPost.FirstOrDefault(p => p.ID == postId && (p.IsPublic || (p.UserId == userId)));
                 return View(model);
             }
            

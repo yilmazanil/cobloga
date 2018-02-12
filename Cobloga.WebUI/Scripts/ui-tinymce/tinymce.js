@@ -99,10 +99,7 @@ angular.module('ui.tinymce', [])
         // extend options with initial uiTinymceConfig and options from directive attribute value
         angular.extend(options, uiTinymceConfig, expression);
         setTimeout(function () {
-
-          
             tinymce.init(options);
-            scope.textEditorAvailable = true;
 
         });
 
@@ -113,6 +110,7 @@ angular.module('ui.tinymce', [])
           if (tinyInstance) {
               tinyInstance.setContent(ngModel.$viewValue || '');
           }
+          scope.textEditorAvailable = true;
         };
 
         scope.$on('$destroy', function() {

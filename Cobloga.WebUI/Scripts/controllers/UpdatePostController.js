@@ -3,6 +3,7 @@
     var app = angular.module("cobloga");
 
     var UpdatePostController = function ($scope, $http, $window, cbopostservice) {
+        $scope.textEditorAvailable = false;
         var onPostUpdate = function (response) {
             $window.location.href = 'post/index?postId=' + response;
         };
