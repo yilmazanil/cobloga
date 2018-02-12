@@ -20,8 +20,8 @@ namespace Cobloga.Business.Authentication
                     var user = context.User.FirstOrDefault(u => u.Email == email);
                     if (user != null)
                     {
-                        var decryptedPassword = CustomDecrypt.Decrypt(password);
-                        if (user.Password == decryptedPassword)
+                        var decryptedPassword = CustomDecrypt.Decrypt(user.Password);
+                        if (password == decryptedPassword)
                         {
                             return true;
                         }
