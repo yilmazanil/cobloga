@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Http;
 using Cobloga.WebUI.App_Start;
+using System.Web.Optimization;
 
 namespace Cobloga.WebUI
 {
@@ -18,6 +19,7 @@ namespace Cobloga.WebUI
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
             DummyInitializationMethod();
         }
 

@@ -1,0 +1,1 @@
+{"version":3,"file":"apiendpoint.config.js","sourceRoot":"","sources":["apiendpoint.config.ts"],"names":[],"mappings":"AAAA,CAAC;IACG,YAAY,CAAC;IAEb,OAAO;SACF,MAAM,CAAC,YAAY,CAAC;SACpB,MAAM,CAAC,MAAM,CAAC,CAAC;IAEpB,MAAM,CAAC,OAAO,GAAG,CAAC,gCAAgC,CAAC,CAAC;IACpD,gBACI,mBAAoD;QACpD,mBAAmB,CAAC,SAAS,CAAC,MAAM,CAAC,CAAC;IAC1C,CAAC;AACL,CAAC,CAAC,EAAE,CAAC"}
