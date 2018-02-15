@@ -1,0 +1,5 @@
+﻿<div class="container">
+    <div class="list-group" ng-repeat="rp in vm.RecentPosts | orderBy:'-CreatedDate' | limitTo:5" ng-if="rp.Content">
+        <a href="blogposts/{{rp.ID}}" class="list-group-item" ng-bind-html="rp.Content | trust"></a>
+    </div>
+</div>

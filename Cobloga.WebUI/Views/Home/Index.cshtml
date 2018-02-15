@@ -3,14 +3,4 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
-<div class="container" ng-controller="app.home.HomeController as vm">
-   <div class="list-group" ng-repeat="rp in vm.RecentPosts | orderBy:'-CreatedDate' | limitTo:5" ng-if="rp.Content">
-        <a ng-href="{{'post/index?postId='+rp.ID}}" class="list-group-item" ng-bind-html="rp.Content | trust"></a>
-    </div>
-</div>
-
-@section scripts {
-    @*<script src="~/Scripts/controllers/HomeController.js"></script>*@
-}
-
+<div ng-view></div>

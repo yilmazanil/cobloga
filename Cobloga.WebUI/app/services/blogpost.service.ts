@@ -27,7 +27,7 @@
 
         getRecentPosts(): ng.IPromise<IBlogPost[]> {
             return this.$http
-                .get(this.apiEndpoint.baseUrl + '/posts')
+                .get(this.apiEndpoint.baseUrl + '/blogpost')
                 .then((response: ng.IHttpPromiseCallbackArg<IBlogPost[]>): IBlogPost[] => {
                     return <IBlogPost[]>response.data;
                 });
@@ -35,7 +35,7 @@
 
         getPostDetails(uniqueId: string): ng.IPromise<IBlogPost> {
             return this.$http
-                .get(this.apiEndpoint.baseUrl + '/posts/' + uniqueId)
+                .get(this.apiEndpoint.baseUrl + '/blogpost?id=' + uniqueId)
                 .then((response: ng.IHttpPromiseCallbackArg<IBlogPost>): IBlogPost => {
                     return <IBlogPost>response.data;
                 });
@@ -43,7 +43,7 @@
 
         createPost(postContent: string): ng.IPromise<IBlogPostResult> {
             return this.$http
-                .put(this.apiEndpoint.baseUrl + '/posts', postContent, null)
+                .put(this.apiEndpoint.baseUrl + '/blogpost', postContent, null)
                 .then((response: ng.IHttpPromiseCallbackArg<IBlogPostResult>): IBlogPostResult => {
                     return <IBlogPostResult>response.data;
                 });
@@ -52,7 +52,7 @@
         updatePost(id: string, postContent: string): ng.IPromise<string> {
             var postData = JSON.stringify({ "ID": id, "Content": postContent });
             return this.$http
-                .post(this.apiEndpoint.baseUrl + '/posts', postData, null)
+                .post(this.apiEndpoint.baseUrl + '/blogpost', postData, null)
                 .then((response: ng.IHttpPromiseCallbackArg<string>): string => {
                     return response.data;
                 });

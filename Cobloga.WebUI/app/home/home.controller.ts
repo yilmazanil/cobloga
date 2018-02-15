@@ -8,15 +8,12 @@
     class HomeController implements IHomeScope {
         RecentPosts: app.services.IBlogPost[];
 
-        $onInit() {
-            this.blogPostService.getRecentPosts().then((response: app.services.IBlogPost[]) => {
-                this.RecentPosts = response;
-            });
-        }
+       
+        $onInit() {}
 
-        static $inject = ['app.services.BlogPostService'];
-        constructor(private blogPostService: app.services.IBlogPostService) {
-           
+        static $inject = ['blogPosts'];
+        constructor(posts: app.services.IBlogPost[]) {
+            this.RecentPosts = posts;
         }
     }
     angular

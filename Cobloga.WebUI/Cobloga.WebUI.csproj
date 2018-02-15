@@ -150,7 +150,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\blogposts\blogpost.html" />
+    <Content Include="app\blogposts\displayblogpost.html" />
     <Content Include="app\external\ui.tinymce.module.js" />
+    <Content Include="app\home\home.html" />
     <Content Include="Content\prism.css" />
     <Content Include="Content\site\site.css" />
     <Content Include="Global.asax" />
@@ -495,7 +498,7 @@
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AuthController.cs" />
-    <Compile Include="Controllers\PostsApiController.cs" />
+    <Compile Include="Controllers\Api\BlogPostApiController.cs" />
     <Compile Include="Controllers\PostController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -672,13 +675,16 @@
     <TypeScriptCompile Include="app\blocks\apiendpoint.config.ts" />
     <TypeScriptCompile Include="app\blocks\apiendpoint.provider.ts" />
     <TypeScriptCompile Include="app\blocks\blocks.module.ts" />
+    <TypeScriptCompile Include="app\blogposts\blogpost.routes.ts" />
     <TypeScriptCompile Include="app\blogposts\createblogpost.controller.ts" />
     <TypeScriptCompile Include="app\blogposts\blogposts.module.ts" />
+    <TypeScriptCompile Include="app\blogposts\displayblogpost.controller.ts" />
     <TypeScriptCompile Include="app\blogposts\updateblogpost.controller.ts" />
     <TypeScriptCompile Include="app\filters\filters.module.ts" />
     <TypeScriptCompile Include="app\filters\trust.filter.ts" />
     <TypeScriptCompile Include="app\home\home.controller.ts" />
     <TypeScriptCompile Include="app\home\home.module.ts" />
+    <TypeScriptCompile Include="app\home\home.routes.ts" />
     <TypeScriptCompile Include="app\services\blogpost.service.ts" />
     <TypeScriptCompile Include="app\services\services.module.ts" />
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular-animate.d.ts" />

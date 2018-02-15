@@ -14,22 +14,17 @@
 
         $onInit() { }
 
-        static $inject = ['app.services.BlogPostService', '$window'];
+        static $inject = ['app.services.BlogPostService', '$window', 'blogPost'];
         constructor(private blogPostService: app.services.IBlogPostService,
-            private window: ng.IWindowService) { }
-
-
-        onPostUpdate(response: app.services.IBlogPostResult): void {
-            this.window.location.href = 'post/index?postId=' + response.ID;
+            private window: ng.IWindowService, blogPost: app.services.IBlogPost) {
+                this.tinymceModel = blogPost.Content;
         }
-
 
         Update(): void {
             this.blogPostService.updatePost(this.postId, this.tinymceModel).then((result: string): void => {
                 this.window.location.href = 'post/index?postId=' + result;
             })
         }
-        
     }
 
     angular
