@@ -3,8 +3,7 @@
         <a href="/post/update?postId={{vm.BlogPost.ID}}">Edit</a>
     </div>
     <div class="well">
-                <div ng-bind-html="{{vm.BlogPost.Content | trust}}"> 
+        <div ng-bind-html="vm.BlogPost.Content | trust">
         </div>
     </div>
 </div>
-

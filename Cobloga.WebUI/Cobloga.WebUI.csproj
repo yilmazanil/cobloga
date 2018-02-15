@@ -152,7 +152,6 @@
   <ItemGroup>
     <Content Include="app\blogposts\blogpost.html" />
     <Content Include="app\blogposts\displayblogpost.html" />
-    <Content Include="app\external\ui.tinymce.module.js" />
     <Content Include="app\home\home.html" />
     <Content Include="Content\prism.css" />
     <Content Include="Content\site\site.css" />
