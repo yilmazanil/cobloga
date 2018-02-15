@@ -299,4 +299,5 @@ __pycache__/
 *.xsd.cs
 
 
-app/*.js
+**/app/**/*.js
+**/app/**/*.map
