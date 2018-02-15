@@ -3,7 +3,7 @@
 
     angular
         .module('app', [
-            //'app.core',
+            'app.core',
             'app.services',
             'app.blocks',
             'app.filters',
@@ -11,6 +11,6 @@
              * Features areas
              */
             'app.home',
-            //'app.blogposts'
+            'app.blogposts'
         ]);
 })();

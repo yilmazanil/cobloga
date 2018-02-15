@@ -1,7 +1,7 @@
 /**
  * Binds a TinyMCE widget to <textarea> elements.
  */
-angular.module('ui.tinymce', [])
+angular.module('external.module', [])
   .value('uiTinymceConfig', {})
   .directive('uiTinymce', ['uiTinymceConfig', function (uiTinymceConfig) {
     uiTinymceConfig = uiTinymceConfig || {};
@@ -110,7 +110,6 @@ angular.module('ui.tinymce', [])
           if (tinyInstance) {
               tinyInstance.setContent(ngModel.$viewValue || '');
           }
-          scope.textEditorAvailable = true;
         };
 
         scope.$on('$destroy', function() {

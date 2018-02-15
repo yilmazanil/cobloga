@@ -3,20 +3,32 @@
 
 
 
-    export class TrustFilter {
-        public static Factory() {
-            var factoryFunction = ($sce: ng.ISCEService) => {
-                return (value) => {
-                    return $sce.trustAsResourceUrl(value)
+    TrustFilter.$inject = [
+            '$sce'
+    ];
+    export function TrustFilter($sce: ng.ISCEService): any {
+        return (value) => {
+            return $sce.trustAsHtml(value)
                 };
-            };
+    }
+    //export class TrustFilter {
+    //    public static Factory() {
+    //        var factoryFunction = ($sce: ng.ISCEService) => {
+    //            return (value) => {
+    //                return $sce.trustAsResourceUrl(value)
+    //            };
+    //        };
 
-                factoryFunction.$inject = ['$sce'];
+    //            factoryFunction.$inject = ['$sce'];
 
-                return factoryFunction;
-            }
-        }
+    //            return factoryFunction;
+    //        }
+    //    }
 
+    //var filterFunction = new TrustFilter();
+    angular
+        .module('app.filters')
+        .filter('trust', TrustFilter);
 
         //class TrustFilter {
         //    constructor(private $sce: ng.ISCEService) {
@@ -35,7 +47,7 @@
         //function filter($sce: ng.ISCEService): TrustFilter{
         //    return new TrustFilter($sce);
         //}
-        angular
-            .module('app.filters')
-            .filter('trust', TrustFilter);
+        //angular
+        //    .module('app.filters')
+        //    .filter('trust', TrustFilter);
     };

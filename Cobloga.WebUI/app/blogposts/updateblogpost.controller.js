@@ -3,7 +3,7 @@ var app;
     var blogposts;
     (function (blogposts) {
         'use strict';
-        var UpdatePostController = /** @class */ (function () {
+        var UpdatePostController = (function () {
             function UpdatePostController(blogPostService, window) {
                 this.blogPostService = blogPostService;
                 this.window = window;
@@ -12,11 +12,13 @@ var app;
             UpdatePostController.prototype.onPostUpdate = function (response) {
                 this.window.location.href = 'post/index?postId=' + response.ID;
             };
-            ;
             UpdatePostController.prototype.Update = function () {
-                this.blogPostService.updatePost(this.postId, this.tinymceModel).then(this.onPostUpdate);
+                var _this = this;
+                this.blogPostService.updatePost(this.postId, this.tinymceModel).then(function (result) {
+                    _this.window.location.href = 'post/index?postId=' + result;
+                });
             };
-            UpdatePostController.$inject = ['app.services.BlogPostService'];
+            UpdatePostController.$inject = ['app.services.BlogPostService', '$window'];
             return UpdatePostController;
         }());
         angular
@@ -24,3 +26,4 @@ var app;
             .controller('app.blogposts.UpdatePostController', UpdatePostController);
     })(blogposts = app.blogposts || (app.blogposts = {}));
 })(app || (app = {}));
+//# sourceMappingURL=updateblogpost.controller.js.map

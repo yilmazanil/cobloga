@@ -3,7 +3,7 @@ var app;
     var services;
     (function (services) {
         'use strict';
-        var BlogPostService = /** @class */ (function () {
+        var BlogPostService = (function () {
             function BlogPostService($http, apiEndpoint) {
                 this.$http = $http;
                 this.apiEndpoint = apiEndpoint;
@@ -24,7 +24,7 @@ var app;
             };
             BlogPostService.prototype.createPost = function (postContent) {
                 return this.$http
-                    .put(this.apiEndpoint.baseUrl + 'api/posts', postContent, null)
+                    .put(this.apiEndpoint.baseUrl + '/posts', postContent, null)
                     .then(function (response) {
                     return response.data;
                 });
@@ -32,7 +32,7 @@ var app;
             BlogPostService.prototype.updatePost = function (id, postContent) {
                 var postData = JSON.stringify({ "ID": id, "Content": postContent });
                 return this.$http
-                    .post(this.apiEndpoint.baseUrl + 'api/posts', postData, null)
+                    .post(this.apiEndpoint.baseUrl + '/posts', postData, null)
                     .then(function (response) {
                     return response.data;
                 });
@@ -51,3 +51,4 @@ var app;
             .factory('app.services.BlogPostService', factory);
     })(services = app.services || (app.services = {}));
 })(app || (app = {}));
+//# sourceMappingURL=blogpost.service.js.map

@@ -3,7 +3,7 @@ var app;
     var blogposts;
     (function (blogposts) {
         'use strict';
-        var CreatePostController = /** @class */ (function () {
+        var CreatePostController = (function () {
             function CreatePostController(blogPostService, window) {
                 this.blogPostService = blogPostService;
                 this.window = window;
@@ -17,7 +17,7 @@ var app;
                 var postData = JSON.stringify({ 'content': this.tinymceModel, 'isPublic': this.isPublic });
                 this.blogPostService.createPost(postData).then(this.onPostCreate);
             };
-            CreatePostController.$inject = ['app.services.BlogPostService'];
+            CreatePostController.$inject = ['app.services.BlogPostService', '$window'];
             return CreatePostController;
         }());
         angular
@@ -25,3 +25,4 @@ var app;
             .controller('app.blogposts.CreatePostController', CreatePostController);
     })(blogposts = app.blogposts || (app.blogposts = {}));
 })(app || (app = {}));
+//# sourceMappingURL=createblogpost.controller.js.map

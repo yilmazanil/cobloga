@@ -13,7 +13,7 @@
 
         $onInit() { }
 
-        static $inject = ['app.services.BlogPostService'];
+        static $inject = ['app.services.BlogPostService', '$window'];
         constructor(private blogPostService: app.services.IBlogPostService,
             private window: ng.IWindowService) { }
 

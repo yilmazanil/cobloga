@@ -6,7 +6,7 @@
 
 <div class="container" ng-controller="app.home.HomeController as vm">
    <div class="list-group" ng-repeat="rp in vm.RecentPosts | orderBy:'-CreatedDate' | limitTo:5" ng-if="rp.Content">
-        <a href="post/index?postId={{rp.ID}}" class="list-group-item" ng-bind-html="rp.Content | trust"></a>
+        <a ng-href="{{'post/index?postId='+rp.ID}}" class="list-group-item" ng-bind-html="rp.Content | trust"></a>
     </div>
 </div>
 

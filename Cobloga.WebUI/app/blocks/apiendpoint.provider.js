@@ -3,7 +3,7 @@ var app;
     var blocks;
     (function (blocks) {
         'use strict';
-        var ApiEndpointProvider = /** @class */ (function () {
+        var ApiEndpointProvider = (function () {
             function ApiEndpointProvider() {
             }
             ApiEndpointProvider.prototype.configure = function (baseUrl) {
@@ -21,3 +21,4 @@ var app;
             .provider('app.blocks.ApiEndpoint', ApiEndpointProvider);
     })(blocks = app.blocks || (app.blocks = {}));
 })(app || (app = {}));
+//# sourceMappingURL=apiendpoint.provider.js.map

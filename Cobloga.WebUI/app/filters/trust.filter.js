@@ -3,39 +3,31 @@ var app;
     var filters;
     (function (filters) {
         'use strict';
-        var TrustFilter = /** @class */ (function () {
-            function TrustFilter() {
-            }
-            TrustFilter.Factory = function () {
-                var factoryFunction = function ($sce) {
-                    return function (value) {
-                        return $sce.trustAsResourceUrl(value);
-                    };
-                };
-                factoryFunction.$inject = ['$sce'];
-                return factoryFunction;
+        TrustFilter.$inject = [
+            '$sce'
+        ];
+        function TrustFilter($sce) {
+            return function (value) {
+                return $sce.trustAsHtml(value);
             };
-            return TrustFilter;
-        }());
+        }
         filters.TrustFilter = TrustFilter;
-        //class TrustFilter {
-        //    constructor(private $sce: ng.ISCEService) {
-        //    }
-        //    static filter($sce: ng.ISCEService) {
-        //        return (value) => {
-        //            return $sce.trustAsResourceUrl(value)
+        //export class TrustFilter {
+        //    public static Factory() {
+        //        var factoryFunction = ($sce: ng.ISCEService) => {
+        //            return (value) => {
+        //                return $sce.trustAsResourceUrl(value)
+        //            };
         //        };
+        //            factoryFunction.$inject = ['$sce'];
+        //            return factoryFunction;
+        //        }
         //    }
-        //}
-        //filter.$inject = [
-        //    '$sce'
-        //];
-        //function filter($sce: ng.ISCEService): TrustFilter{
-        //    return new TrustFilter($sce);
-        //}
+        //var filterFunction = new TrustFilter();
         angular
             .module('app.filters')
             .filter('trust', TrustFilter);
     })(filters = app.filters || (app.filters = {}));
 })(app || (app = {}));
 ;
+//# sourceMappingURL=trust.filter.js.map

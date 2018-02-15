@@ -13,6 +13,6 @@
              * 3rd Party Modules
              */
             //'hc.marked'
-            //'ui.tinymce'
+            'external.module'
         ]);
 })();

@@ -3,7 +3,7 @@ var app;
     var home;
     (function (home) {
         'use strict';
-        var HomeController = /** @class */ (function () {
+        var HomeController = (function () {
             function HomeController(blogPostService) {
                 this.blogPostService = blogPostService;
             }
@@ -21,3 +21,4 @@ var app;
             .controller('app.home.HomeController', HomeController);
     })(home = app.home || (app.home = {}));
 })(app || (app = {}));
+//# sourceMappingURL=home.controller.js.map
