@@ -4,7 +4,7 @@
     export interface IBlogPostService {
         getRecentPosts(): ng.IPromise<IBlogPost[]>;
         getPostDetails(uniqueId: string): ng.IPromise<IBlogPost>;
-        createPost(postContent: string): ng.IPromise<IBlogPostResult>;
+        createPost(postContent: string): ng.IPromise<IBlogPost>;
         updatePost(id: string, postContent: string): ng.IPromise<string>;
     }
 
@@ -41,11 +41,11 @@
                 });
         }
 
-        createPost(postContent: string): ng.IPromise<IBlogPostResult> {
+        createPost(postContent: string): ng.IPromise<IBlogPost> {
             return this.$http
                 .put(this.apiEndpoint.baseUrl + '/blogpost', postContent, null)
-                .then((response: ng.IHttpPromiseCallbackArg<IBlogPostResult>): IBlogPostResult => {
-                    return <IBlogPostResult>response.data;
+                .then((response: ng.IHttpPromiseCallbackArg<IBlogPost>): IBlogPost => {
+                    return <IBlogPost>response.data;
                 });
         }
 

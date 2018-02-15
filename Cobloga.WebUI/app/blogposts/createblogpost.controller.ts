@@ -4,7 +4,7 @@
     interface ICrateBlogPostScope{
         isPublic: boolean;
         tinymceModel: string;
-        save: () => void;
+        Save: () => void;
     }
 
     class CreatePostController implements ICrateBlogPostScope {
@@ -15,17 +15,16 @@
 
         static $inject = ['app.services.BlogPostService', '$window'];
         constructor(private blogPostService: app.services.IBlogPostService,
-            private window: ng.IWindowService) { }
+            private window: ng.IWindowService) {
+            this.isPublic = true;
+        }
 
 
-        onPostCreate(response: app.services.IBlogPostResult): void {
-            this.window.location.href = 'post/index?postId=' + response.ID;
-        };
-
-
-        save(): void {
+        Save(): void {
             var postData = JSON.stringify({ 'content': this.tinymceModel, 'isPublic': this.isPublic });
-            this.blogPostService.createPost(postData).then(this.onPostCreate);
+            this.blogPostService.createPost(postData).then((response: app.services.IBlogPost): void => {
+                this.window.location.href = '/blogposts/' + response.ID;
+            });
         }
     }
 

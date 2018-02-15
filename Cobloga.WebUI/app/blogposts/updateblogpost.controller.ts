@@ -4,7 +4,7 @@
     interface IUpdateBlogPostScope {
         tinymceModel: string;
         postId: string;
-        Update: () => void;
+        Save: () => void;
     }
 
     class UpdatePostController implements IUpdateBlogPostScope {
@@ -17,12 +17,13 @@
         static $inject = ['app.services.BlogPostService', '$window', 'blogPost'];
         constructor(private blogPostService: app.services.IBlogPostService,
             private window: ng.IWindowService, blogPost: app.services.IBlogPost) {
-                this.tinymceModel = blogPost.Content;
+            this.tinymceModel = blogPost.Content;
+            this.postId = blogPost.ID;
         }
 
-        Update(): void {
+        Save(): void {
             this.blogPostService.updatePost(this.postId, this.tinymceModel).then((result: string): void => {
-                this.window.location.href = 'post/index?postId=' + result;
+                this.window.location.href = '/blogposts/'+result;
             })
         }
     }

@@ -44,7 +44,7 @@ namespace Cobloga.WebUI.Controllers
                 post.CreatedDate = DateTime.Now;
                 post = context.CbaPost.Add(post);
                 context.SaveChanges();
-                return Json(post.ID);
+                return Json(post);
             }
         }
 

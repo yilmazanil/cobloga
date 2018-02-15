@@ -13,7 +13,7 @@
         $routeProvider: ng.route.IRouteProvider,
         $locationProvider: ng.ILocationProvider): void {
         $routeProvider
-            .when('/home', {
+            .when('/', {
                 templateUrl: 'app/home/home.html',
                 controller: 'app.home.HomeController',
                 controllerAs: 'vm',

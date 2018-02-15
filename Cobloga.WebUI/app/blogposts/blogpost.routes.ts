@@ -19,11 +19,15 @@
         $routeProvider
             .when('/blogposts/update/:uniqueId', {
                 templateUrl: 'app/blogposts/blogpost.html',
-                controller: 'app.blogposts.BlogPostController',
+                controller: 'app.blogposts.UpdatePostController',
                 controllerAs: 'vm',
                 resolve: {
                     blogPost: resolveBlogPost
                 }
+            }).when('/blogposts/create', {
+                templateUrl: 'app/blogposts/blogpost.html',
+                controller: 'app.blogposts.CreatePostController',
+                controllerAs: 'vm'
             }).when('/blogposts/:uniqueId', {
                 templateUrl: 'app/blogposts/displayblogpost.html',
                 controller: 'app.blogposts.DisplayPostController',
