@@ -1,4 +1,6 @@
 ﻿using Cobloga.Business.Authentication;
+using Cobloga.Business.Services;
+using Cobloga.Business.ViewModel;
 using Cobloga.Data;
 using Cobloga.Data.DataModel;
 using Cobloga.WebUI.Models;
@@ -13,53 +15,32 @@ namespace Cobloga.WebUI.Controllers
     [Route("api/blogpost/")]
     public class BlogPostApiController : ApiController
     {
-        public IEnumerable<CbaPostViewModel> Get()
-        {
+        private BlogPostService blogPostService = new BlogPostService();
 
-            var userId = AuthenticationProvider.GetUserIdIfExists();
-            using (var context = new CoblogaDataContext())
-            {
-                return context.CbaPost.Where(p => p.Content != null && p.Content != "" && (p.IsPublic || (userId.HasValue && p.UserId == userId.Value)))
-                    .Select(p => new CbaPostViewModel { Content = p.Content, CreatedDate = p.CreatedDate, UserId = p.UserId, ID = p.ID }).ToList();
-            }
+        public IEnumerable<BlogPostViewModel> Get()
+        {
+            return blogPostService.FetchAll();
         }
 
-        public CbaPostViewModel Get(Guid id)
+        public BlogPostViewModel Get(Guid id)
         {
 
-            using (var context = new CoblogaDataContext())
-            {
-                var model = context.CbaPost.FirstOrDefault(p => p.ID == id);
-                return new CbaPostViewModel { Content = model.Content, CreatedDate = model.CreatedDate, UserId = model.UserId, ID = model.ID };
-            }
+            return blogPostService.FetchById(id);
         }
 
         [HttpPut]
-        public IHttpActionResult Post([FromBody]BlogPost post)
+        public IHttpActionResult Post([FromBody]BlogPostViewModel post)
         {
-            var userId = AuthenticationProvider.GetUserIdIfExists();
-            using (var context = new CoblogaDataContext())
-            {
-                post.UserId = userId;
-                post.CreatedDate = DateTime.Now;
-                post = context.CbaPost.Add(post);
-                context.SaveChanges();
-                return Json(post);
-            }
+           var result =  blogPostService.Create(post);
+           return Json(result);
         }
 
 
         [HttpPost]
-        public IHttpActionResult Update([FromBody]BlogPost post)
+        public IHttpActionResult Update([FromBody]BlogPostViewModel post)
         {
 
-            using (var context = new CoblogaDataContext())
-            {
-                var entry = context.CbaPost.FirstOrDefault(p => p.ID == post.ID);
-                entry.Content = post.Content;
-                entry.IsPublic = post.IsPublic;
-                context.SaveChanges();
-            }
+            blogPostService.Update(post);
             return Json(post.ID);
         }
     }

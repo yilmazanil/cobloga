@@ -20,6 +20,7 @@ namespace Cobloga.WebUI
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            AutoMapperConfig.Configure();
             DummyInitializationMethod();
         }
 

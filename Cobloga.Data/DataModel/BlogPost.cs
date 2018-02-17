@@ -19,5 +19,7 @@ namespace Cobloga.Data.DataModel
         public virtual User User { get; set; }
 
         public bool IsPublic { get; set; }
+
+        public DateTime? ModifiedDate { get; set; }
     }
 }

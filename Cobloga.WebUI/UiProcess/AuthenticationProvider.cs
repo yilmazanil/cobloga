@@ -58,27 +58,6 @@ namespace Cobloga.WebUI.Authentication
             return false;
         }
 
-        public static int? GetUserIdIfExists()
-        {
-            Claim sessionEmail = ClaimsPrincipal.Current.FindFirst(ClaimTypes.Email);
-            if (sessionEmail != null)
-            {
-                using (var context = new CoblogaDataContext())
-                {
-                    if (!string.IsNullOrWhiteSpace(sessionEmail.Value))
-                    {
-                        var user = context.User.FirstOrDefault(u => u.Email == sessionEmail.Value);
-                        if (user != null)
-                        {
-                            return user.Id;
-                        }
-                    }
-                }
-            }
-            return null;
-        }
-
-
         public bool SignIn(User authenticationRequest)
         {
             if (Authenticate(authenticationRequest.Email, authenticationRequest.Password))
