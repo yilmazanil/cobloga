@@ -10,7 +10,7 @@ namespace Cobloga.Data
         {
         }
 
-        public DbSet<CbaPost> CbaPost { get; set; }
+        public DbSet<BlogPost> CbaPost { get; set; }
         public DbSet<User> User { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

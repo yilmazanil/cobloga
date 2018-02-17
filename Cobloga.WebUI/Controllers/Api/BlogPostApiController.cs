@@ -16,7 +16,7 @@ namespace Cobloga.WebUI.Controllers
         public IEnumerable<CbaPostViewModel> Get()
         {
 
-            var userId = AuthenticationHelper.GetUserIdIfExists();
+            var userId = AuthenticationProvider.GetUserIdIfExists();
             using (var context = new CoblogaDataContext())
             {
                 return context.CbaPost.Where(p => p.Content != null && p.Content != "" && (p.IsPublic || (userId.HasValue && p.UserId == userId.Value)))
@@ -35,9 +35,9 @@ namespace Cobloga.WebUI.Controllers
         }
 
         [HttpPut]
-        public IHttpActionResult Post([FromBody]CbaPost post)
+        public IHttpActionResult Post([FromBody]BlogPost post)
         {
-            var userId = AuthenticationHelper.GetUserIdIfExists();
+            var userId = AuthenticationProvider.GetUserIdIfExists();
             using (var context = new CoblogaDataContext())
             {
                 post.UserId = userId;
@@ -50,7 +50,7 @@ namespace Cobloga.WebUI.Controllers
 
 
         [HttpPost]
-        public IHttpActionResult Update([FromBody]CbaPost post)
+        public IHttpActionResult Update([FromBody]BlogPost post)
         {
 
             using (var context = new CoblogaDataContext())

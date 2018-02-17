@@ -10,11 +10,13 @@ namespace Cobloga.Data.DataModel
 
         public string Email { get; set; }
 
+        [StringLength(155)]
         public string Password { get; set; }
-
+       
+        [StringLength(155)]
         public string Name { get; set; }
 
-        public ICollection<CbaPost> Posts { get; set; }
+        public ICollection<BlogPost> Posts { get; set; }
 
     }
 }

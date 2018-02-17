@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Cobloga.Data.DataModel
 {
-    public class CbaPost
+    public class BlogPost
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]

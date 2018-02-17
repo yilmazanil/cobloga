@@ -64,9 +64,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CbaPostInitializer.cs" />
+    <Compile Include="CoblogaDataSeed.cs" />
     <Compile Include="CoblogaDataContext.cs" />
-    <Compile Include="DataModel\CbaPost.cs" />
+    <Compile Include="DataModel\BlogPost.cs" />
     <Compile Include="DataModel\User.cs" />
     <Compile Include="Migrations\201802090729558_Initial.cs" />
     <Compile Include="Migrations\201802090729558_Initial.Designer.cs">

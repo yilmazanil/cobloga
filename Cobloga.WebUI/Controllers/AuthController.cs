@@ -4,11 +4,19 @@ using System.Web.Mvc;
 using System.Security.Claims;
 using Cobloga.Business.Authentication;
 using Cobloga.Data.DataModel;
+using Cobloga.WebUI.Authentication;
 
 namespace Cobloga.WebUI.Controllers
 {
     public class AuthController : Controller
     {
+        private IAuthenticationProvider authProvider;
+
+        public AuthController()
+        {
+            authProvider = new AuthenticationProvider(new CustomEncryptor(), Request);
+        }
+
         [HttpGet]
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
@@ -25,10 +33,9 @@ namespace Cobloga.WebUI.Controllers
                 return View(model);
             }
 
-            if (AuthenticationHelper.Authenticate(model.Email, model.Password))
+            var requestUser = new User { Email = model.Email, Password = model.Password };
+            if (authProvider.SignIn(requestUser))
             {
-                var identity = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Email, model.Email) }, "CoblogaCookie");
-                Request.GetOwinContext().Authentication.SignIn(identity);
                 return Redirect(GetRedirectUrl(model.ReturnUrl));
             }
        
@@ -38,7 +45,7 @@ namespace Cobloga.WebUI.Controllers
 
         public ActionResult Logout()
         {
-           Request.GetOwinContext().Authentication.SignOut("CoblogaCookie"); ;
+           authProvider.SignOut();
            return RedirectToAction("Index", "Home");
         }
         public ActionResult Registration()
@@ -56,7 +63,7 @@ namespace Cobloga.WebUI.Controllers
                     Name = model.Name,
                     Password = model.Password,
                 };
-                if (AuthenticationHelper.Register(user))
+                if (authProvider.Register(user))
                 {
                     RedirectToAction("Index", "Home");
                 }

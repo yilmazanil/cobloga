@@ -1,4 +1,5 @@
-﻿using Cobloga.Data;
+﻿using Cobloga.Business.Authentication;
+using Cobloga.Data;
 using Cobloga.Data.DataModel;
 using System;
 using System.Collections.Generic;
@@ -6,12 +7,22 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
-namespace Cobloga.Business.Authentication
+namespace Cobloga.WebUI.Authentication
 {
-    public class AuthenticationHelper
+    public class AuthenticationProvider : IAuthenticationProvider
     {
-        public static bool Authenticate(string email, string password)
+        private IEncryptor dataEncryptor;
+        private HttpRequestBase httpRequest;
+
+        public AuthenticationProvider(IEncryptor encryptor, HttpRequestBase webRequest)
+        {
+            dataEncryptor = encryptor;
+            httpRequest = webRequest;
+        }
+
+        public bool Authenticate(string email, string password)
         {
             if (!string.IsNullOrWhiteSpace(email) && !string.IsNullOrWhiteSpace(password))
             {
@@ -20,7 +31,7 @@ namespace Cobloga.Business.Authentication
                     var user = context.User.FirstOrDefault(u => u.Email == email);
                     if (user != null)
                     {
-                        var decryptedPassword = CustomDecrypt.Decrypt(user.Password);
+                        var decryptedPassword = dataEncryptor.Decrypt(user.Password);
                         if (password == decryptedPassword)
                         {
                             return true;
@@ -31,12 +42,12 @@ namespace Cobloga.Business.Authentication
             return false;
         }
 
-        public static bool Register(User newUser)
+        public bool Register(User newUser)
         {
             if (newUser != null && !string.IsNullOrWhiteSpace(newUser.Email) 
                 && !string.IsNullOrWhiteSpace(newUser.Password) && !string.IsNullOrWhiteSpace(newUser.Name))
             {
-                newUser.Password = CustomEncrypt.Encrypt(newUser.Password);
+                newUser.Password = dataEncryptor.Encrypt(newUser.Password);
                 using (var context = new CoblogaDataContext())
                 {
                     context.User.Add(newUser);
@@ -65,6 +76,23 @@ namespace Cobloga.Business.Authentication
                 }
             }
             return null;
+        }
+
+
+        public bool SignIn(User authenticationRequest)
+        {
+            if (Authenticate(authenticationRequest.Email, authenticationRequest.Password))
+            {
+                var identity = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Email, authenticationRequest.Email) }, "CoblogaCookie");
+                httpRequest.GetOwinContext().Authentication.SignIn(identity);
+                return true;
+            }
+            return false;
+        }
+
+        public void SignOut()
+        {
+            httpRequest.GetOwinContext().Authentication.SignOut("CoblogaCookie"); ;
         }
     }
 }
